@@ -1,0 +1,35 @@
+Now that we know how to test the security of all known wireless encryptions (WEP/WPA/WPA2), it is relatively easy to secure our networks against these attacks as we know all the weaknesses that can be used by hackers to crack these encryptions.
+
+
+WEP: WEP is an old encryption, and its really weak, as we seen in the course there are a number of methods that can be used to crack this encryption regardless of the strength of the password and even if there is nobody connected to the network. These attacks are possible because of the way WEP works, we discussed the weakness of WEP and how it can be used to crack it, some of these methods even allow you to crack the key in a few minutes.
+
+WEP, or Wired Equivalent Privacy, is a security protocol designed for wireless networks. It was introduced as part of the IEEE 802.11 standard in 1997 with the intention of providing a level of data encryption and access control similar to that of a wired network. However, over time, serious security vulnerabilities were discovered in WEP, making it highly insecure and ineffective for protecting wireless communications. Here's some detailed information about WEP:
+
+**Key Features of WEP:**
+
+1. **Encryption:** WEP uses a symmetric encryption algorithm called RC4 (Rivest Cipher 4) to scramble data before transmission over the wireless network. The idea was to prevent unauthorized users from intercepting and understanding the data being exchanged.
+
+2. **Shared Key Authentication:** WEP employs a shared key authentication mechanism. This means that both the client (device connecting to the network) and the access point (the wireless router) must have the same shared secret key. The key is used to authenticate the client's access to the network.
+
+**Vulnerabilities and Weaknesses:**
+
+Unfortunately, WEP's security mechanisms were found to be severely flawed, leading to its quick deprecation and replacement by more secure protocols like WPA (Wi-Fi Protected Access) and WPA2. Some of the key vulnerabilities and weaknesses of WEP include:
+
+1. **Weak Key Generation:** WEP uses a small key size (typically 40 or 104 bits) along with a 24-bit Initialization Vector (IV) to generate encryption keys. The limited key space makes it susceptible to brute-force attacks, where attackers can systematically try all possible keys to decrypt the data.
+
+2. **Statistical Vulnerabilities:** Due to the way WEP uses the RC4 algorithm, repeated use of the same encryption key with different IVs can lead to the reuse of keystreams. This makes it easier for attackers to decipher encrypted packets by analyzing patterns in the intercepted data.
+
+3. **IV Collisions:** With a 24-bit IV, there are only 16,777,216 possible IVs. When a sufficient number of packets are transmitted, IV collisions become inevitable. Collisions mean that the same IV is used multiple times, allowing attackers to exploit the statistical vulnerabilities and crack the encryption.
+
+4. **Weak Integrity Protection:** WEP does not provide proper integrity protection, which means attackers can modify the content of packets without detection.
+
+5. **Passive Attacks:** Attackers can passively collect enough encrypted packets and exploit the vulnerabilities in WEP to deduce the encryption key.
+
+**Conclusion:**
+
+In summary, due to these serious vulnerabilities, WEP is considered highly insecure and unsuitable for protecting wireless networks. It has been widely replaced by stronger security protocols like WPA and WPA2, which offer robust encryption, stronger authentication mechanisms, and better protection against various types of attacks.
+
+If you are setting up a wireless network, it is strongly recommended to use WPA3 or the latest security protocol available, and to avoid using WEP due to its inherent security weaknesses.
+
+
+REQUIREMENTS : KALI Linux , USB wifi adapter with a chipset of [Realtek RTL8192EU or AR9271] , internet connection.

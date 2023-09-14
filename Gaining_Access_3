@@ -1,0 +1,54 @@
+Gaining access : WEP Cracking :
+			> Wired Equivalent privacy
+			> old encryption
+			> uses an algo called RC4
+			> still used in some n/w
+			> can be cracked easily.
+		
+How it works : 
+	> client encrypts data using a key
+	> encrypted packet is sent in the air
+	> Router decrypts packet using the key.
+	
+	In detail: > Each packet is encrypted using a unique key stream.
+		   > Random initialization vector (IV) is used to generate the keys streams.
+		   > the inilization vector is only 24 bits
+		   > IV + Key (Password) = Key stream.
+	
+	Weakness: IV is too small
+	          IV is sent in plain text
+	          
+	Results : IV's will repeat on bussy network.
+		  This makes WEp vulnerable to statistical attacks.
+		  Repeated IV's can be used to determine the key stream.
+		  and break the encryption.        
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Break the WEP security of a desired network : airodump-ng --bssid "- - -" --channel " " --write basic_wep(file name) wlan0
+(we are intrested in  .cap file )
+once we get the file: > do -- ls
+		      > run command - aircrack-ng "file name"
+		      > on successful run we will get an ASCII Password.
+		      > if you dont get the ASCII password then yoou get a KEY FOUND we can also connect to the n/w using that key.
+		      > Copy the key found paste it in command prompt and removet the colons in betn the numbers. (eg 41:73:32:33:70 --> 4173323370)
+		      > Now go to the host machine enter the KEY with removed colons and try connecting to the desired network.
+		      
+- - - - - - - - - - - - - - - - - - - - - - - - - - - -- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+WEP Cracking:
+We can face one problem above is that if network is busy then it would take somme time to capture enough IVs.
+
+So the solution to it is we force AP to generate new IVs.
+
+Now how do we do it ?? 
+
+FAKE AUTHENTICATION ATTACK: > airodump-ng --bssid "- - -" --channel "- - -" --write arpreplay(file name) wlan0  [ run this command]
+			    > now we associate with this network: aireplay-ng --fakeauth 0 -a "bssid" -h "mac address of the wireless adapter" wlan0
+			    > replace the - in mac address of wireless adapter by : 
+			    > NOW WE COMMUNICATE WITH THE TARGET NETWORK IN ORDER TO GENERATE THE KEY.
+			    > NOW we do an arpreplay attack : aireplay-ng --arpreplay -b bssid -h mac address of router wlan0
+			    > wait for ARP packet to be generated once it is done we are ready to gain access 
+			    > now run : aircrack-ng arpreplay-01.cap(file name) 
+			    > make sure you get enough of data packets generated before running the command 
+			    > on successfull run you get the decrypted key and you are ready to get the access of the network.
+			    

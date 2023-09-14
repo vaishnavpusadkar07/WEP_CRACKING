@@ -1,0 +1,68 @@
+Network Hacking: A. Pre- connection Attacks. (wired connection hacking)
+		 B. Gaining Access. (wireless hacking to wifi)
+                 C. Post-connection Attacks. 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Network basics: 
+    
+>clients i.e users have access to the Resource(eg : internet ) through the Access point/Router. 
+
+>no direct access to the users to the resources. 
+
+>Access point is the only device that has a direct internet access i.e direct connection to the resource and Not the users.
+
+>data transfer takes place as the packets in between the access point and the clients , acceccpoit and the resource. 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+Connect a usb device to a virtual machine. Needed ( Wireless wifi adapter: Requirements are: 1- Monitor mode, 2- packet injection, 3- AP mode)
+Wireless adapters communicate with the available networks in the surroundings.
+
+Note: Disconnect the usb wifi adapter physically if already connected.
+
+STEPS: 1) run  ifconfig ( no wireless adapter will be shown on the interface)
+       2) connect the usb adapter to the virtual machine. And run the ifconfig command again ( you will see the adapter is connected named wlan0)
+       3) eth0 : used to connect to the virtual nat network
+          lo : the loop back interface.
+          wlan0 : the connected usb adapter.
+       4) Wifi adapter is ready to use.
+      
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+# Mac address: ( Media address control)
+ An address given to aphysical electronic device , chip sets etc which is permanent , and unique.
+ Mac adress is also called as the physical address of the device.
+ 
+Mac adress is used between the network and used to identify the devices. while transferring the data.	
+Each packet or data transferred in the n/w has a source mac and a deastination mac.
+ 
+Why Change Mac addresses: > Will make you anonymus.
+                	  > Impersonate other devices.
+                	  > Bypass the filters.
+                	  > Hide your identity.
+                	 
+How to change mac address: ( needs root access)
+	Steps : 1) ifconfig ( get the network interface)
+		2) ether in the eth0 shows the mac address of the virtual interface that your kali is connected to.
+		3) ether part in the wlan0 shows the mac address of our usb router.
+		
+		4) Now disabling the interface in order to change the mac address of the wlan0: 
+			> do ifconfig "interface name (wlan0) " down (ifconfig wlan0 down)
+			> now run "ifconfig wlan0 hw ether 00:12:23:34:45:56 (you can use any address according to your choice make sure it starts with 00) " in order to change the mac address.
+			> run ifconfig wlan0 up (to enable the interface)
+			> run ifconfig (notice the change in the mac address)
+			
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+		
+Change to monitor mode: (Monitor mode help us capture any data/packet avilable in the network without the source and the destination address of the sender and reciever)
+		> iwconfig
+		> ifconfig wlan0 down
+		> airmon-ng check kill
+		> iwconfig wlan0 mode monitor
+		> ifconfig wlan0 up
+		> iwconfig 
+		this is used to break into the n/w. and snatch packets.
+		
+
+		

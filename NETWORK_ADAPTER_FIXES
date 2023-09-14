@@ -1,0 +1,24 @@
+
+RESTART NETWORK SERVIVES: > sudo systemctl stop NetworkManager
+			  > sudo systemctl stop wpa_supplicant
+			  > sudo airmon-ng check kill
+			  > sudo systemctl start NetworkManager
+			  > sudo systemctl start wpa_supplicant
+
+
+
+
+
+
+
+
+RESTART WIFI ADAPTER: > sudo ip link set wlan0 down
+                      > sudo ip link set wlan0 up
+
+
+
+Stop Network Services: > sudo service NetworkManager stop
+		       > sudo service wpa_supplicant stop
+
+Unload Conflicting Modules: > sudo rmmod iwlwifi   # Replace with the appropriate module name
+

